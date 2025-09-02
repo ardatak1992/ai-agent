@@ -1,32 +1,20 @@
-import unittest
-from functions.get_files_info import get_files_info
 
-class TestMain(unittest.TestCase):
-  def test_1(self):
-    files = get_files_info("calculator", ".")
-    print(files)
-    self.assertEqual(files, """Result for current directory:
-                                - main.py: file_size=576 bytes, is_dir=False
-                                - tests.py: file_size=1343 bytes, is_dir=False
-                                - pkg: file_size=92 bytes, is_dir=True
-                     """)
-  
-  def test_2(self):
-    files = get_files_info("calculator", "pkg")
-    self.assertEqual(files, """Result for current directory:
-                                - main.py: file_size=576 bytes, is_dir=False
-                                - tests.py: file_size=1343 bytes, is_dir=False
-                                - pkg: file_size=92 bytes, is_dir=True
-                     """)
+from functions.write_file import write_file
 
-  def test_3(self):
-    files = get_files_info("calculator", "/bin")
-    print(files)
+def test():
+    result = write_file("calculator", "lorem.txt", "wait, this isn't lorem ipsum")
+    print(result)
+    print("")
 
-  def test_4(self):
-    files = get_files_info("calculator", "../")
-    print(files)
+    result = write_file("calculator", "pkg/morelorem.txt", "lorem ipsum dolor sit amet")
+    print(result)
+    print("")
+
+
+    result = write_file("calculator", "/tmp/temp.txt", "this should not be allowed")
+    print(result)
+    print("")
 
 
 if __name__ == "__main__":
-    unittest.main()
+    test()
